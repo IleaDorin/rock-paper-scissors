@@ -1,4 +1,4 @@
-console.log("Let the gae start!");
+console.log("Let the game start!");
 
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3);
@@ -19,5 +19,18 @@ function getComputerChoice() {
     return result;
 }
 
+function getHumanChoice() {
+    while (true) {
+        let result = window.prompt("enter your choice: ", "rock");
+        if (result != 'rock' && result != 'paper' && result != 'scissor') {
+            console.log("invalid input");
+            continue;
+        }
+        return result;
+    }
+}
+
 console.log("comp choice: " + getComputerChoice());
+let human = getHumanChoice();
+console.log("your choice: " + human);
 
