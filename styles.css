@@ -1,0 +1,92 @@
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Heading styles */
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #0077cc;
+}
+
+/* Button styles */
+button.rsp-btn {
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button.rsp-btn:hover {
+    background-color: #005fa3;
+    transform: scale(1.1);
+}
+
+button.rsp-btn:active {
+    background-color: #004080;
+    transform: scale(1.05);
+}
+
+/* Result section styles */
+#result {
+    margin-top: 40px;
+    text-align: center;
+}
+
+#result h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Specific styling for h2 elements within #result */
+#h2_result {
+    font-size: 1.5rem;
+    margin: 20px 0;
+}
+
+/* Winner message styles */
+#winner {
+    font-size: 2.5rem;
+    color: #d9534f;
+    margin-top: 20px;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    button.rsp-btn {
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        margin: 5px;
+    }
+
+    #result h2 {
+        font-size: 1.5rem;
+    }
+
+    #h2_result {
+        font-size: 1.2rem;
+    }
+
+    #winner {
+        font-size: 2rem;
+    }
+}

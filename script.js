@@ -31,23 +31,18 @@ function getHumanChoice() {
 function playRound(humanChoice, compChoice) {
 
     // adding the result to the board
-    const lst = document.querySelector("#ul_result");
-    const listItm = document.createElement('li');
-    const listText = document.createElement('span');
-    listItm.appendChild(listText);
+    const res = document.querySelector("#h2_result");
     let result;
     let win = false;
     if (humanChoice === "invalid") {
         result = "Invalid input, you loose by default!";
         computerScore++;
-        listText.textContent = result;
-        lst.appendChild(listItm);
+        res.textContent = result;
         return;
     }
     if (humanChoice === compChoice) {
         result = "It's a tie!";
-        listText.textContent = result;
-        lst.appendChild(listItm);
+        res.textContent = result;
         return;
     }
     switch (humanChoice) {
@@ -72,8 +67,11 @@ function playRound(humanChoice, compChoice) {
         result = "You win, " + humanChoice + " beats " + compChoice + "!";
         humanScore++;
     }
-    listText.textContent = result;
-    lst.appendChild(listItm);
+    res.textContent = result;
+    if (humanScore == 5 || computerScore == 5) {
+        res.textContent = '';
+        res.remove();
+    }
     return;
 }
 
@@ -95,7 +93,7 @@ buttons.forEach(button => {
         playRound(humanChoice, computerChoice);
         scr.textContent = "Score: You: " + humanScore + ", Robot: " + computerScore;
         if (humanScore == 5 || computerScore == 5) {
-            
+
             let winner = humanScore > computerScore ? "You" : "The Robot";
             wnr.textContent = "Winner: " + winner;
         }
