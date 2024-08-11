@@ -19,15 +19,6 @@ function getComputerChoice() {
     return result;
 }
 
-function getHumanChoice() {
-    let result = window.prompt("enter your choice: ");
-    result = result.toLowerCase();
-    if (result === 'rock' || result === 'paper' || result === 'scissors') {
-        return result;
-    }
-    return "invalid";
-}
-
 function playRound(humanChoice, compChoice) {
 
     // adding the result to the board
@@ -61,7 +52,7 @@ function playRound(humanChoice, compChoice) {
 
 
     if (win == false) {
-        result = "You loose, " + compChoice + " beats " + humanChoice + "!";
+        result = "You lose, " + compChoice + " beats " + humanChoice + "!";
         computerScore++;
     } else {
         result = "You win, " + humanChoice + " beats " + compChoice + "!";
@@ -99,9 +90,3 @@ buttons.forEach(button => {
         }
     });
 });
-
-
-// let winner = "It s a tie";
-// if (computerScore < humanScore) winner = "You";
-// if (computerScore > humanScore) winner = "The Computer";
-// console.log("the winner is: " + winner);
