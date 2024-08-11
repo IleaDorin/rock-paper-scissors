@@ -2,11 +2,6 @@ console.log("Let the game start!");
 
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3);
-
-    //demo run
-    //return choice;
-    // end demo
-
     let result;
     switch (choice) {
         case 0:
@@ -34,19 +29,30 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, compChoice) {
+
+    // adding the result to the board
+    const lst = document.querySelector("#ul_result");
+    const listItm = document.createElement('li');
+    const listText = document.createElement('span');
+    listItm.appendChild(listText);
+    let result;
     let win = false;
     if (humanChoice === "invalid") {
-        console.log("invalid input, you loose by default!");
+        result = "Invalid input, you loose by default!";
         computerScore++;
+        listText.textContent = result;
+        lst.appendChild(listItm);
         return;
     }
     if (humanChoice === compChoice) {
-        console.log("it's a tie!");
+        result = "It's a tie!";
+        listText.textContent = result;
+        lst.appendChild(listItm);
         return;
     }
     switch (humanChoice) {
         case "rock":
-            if (compChoice === "scissor") win = true;
+            if (compChoice === "scissors") win = true;
             break;
         case "paper":
             if (compChoice === "rock") win = true;
@@ -58,25 +64,46 @@ function playRound(humanChoice, compChoice) {
             win = false;
     }
 
+
     if (win == false) {
-        console.log("You loose, " + compChoice + " beats " + humanChoice);
+        result = "You loose, " + compChoice + " beats " + humanChoice + "!";
         computerScore++;
-        return;
     } else {
-        console.log("you win, " + humanChoice + " beats " + compChoice);
+        result = "You win, " + humanChoice + " beats " + compChoice + "!";
         humanScore++;
-        return;
     }
+    listText.textContent = result;
+    lst.appendChild(listItm);
+    return;
+}
+
+function displayEnd(humanScore, computerScore) {
+
 }
 
 let humanScore = 0, computerScore = 0;
-for (let i = 0; i < 5; i++) {
-    console.log("Round " + (i + 1));
-    let compChoice = getComputerChoice();
-    let humanChoice = getHumanChoice();
-    playRound(humanChoice, compChoice);
-}
-let winner = "It s a tie";
-if (computerScore < humanScore) winner = "You";
-if (computerScore > humanScore) winner = "The Computer";
-console.log("the winner is: " + winner);
+
+const scr = document.querySelector("h2");
+const wnr = document.querySelector("#winner");
+scr.textContent = "Score: You: 0, Robot: 0";
+
+let buttons = document.querySelectorAll(".rsp-btn");
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        let humanChoice = button.textContent.toLowerCase();
+        let computerChoice = getComputerChoice();
+        playRound(humanChoice, computerChoice);
+        scr.textContent = "Score: You: " + humanScore + ", Robot: " + computerScore;
+        if (humanScore == 5 || computerScore == 5) {
+            
+            let winner = humanScore > computerScore ? "You" : "The Robot";
+            wnr.textContent = "Winner: " + winner;
+        }
+    });
+});
+
+
+// let winner = "It s a tie";
+// if (computerScore < humanScore) winner = "You";
+// if (computerScore > humanScore) winner = "The Computer";
+// console.log("the winner is: " + winner);
